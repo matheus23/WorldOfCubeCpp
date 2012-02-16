@@ -81,7 +81,7 @@ void Game::run() {
 			frames = 0;
 			time1 = time2;
 			std::cout << fps << " fps" << std::endl;
-			std::cout << "(" << lm->getWorldX() << "/" << lm->getWorldY() << ")" << std::endl;
+//			std::cout << "(" << lm->getWorldX() << "/" << lm->getWorldY() << ")" << std::endl;
 		}
 		/** Calculate Delay, and delay */
 		secndTime = SDL_GetTicks();
@@ -102,5 +102,4 @@ void Game::tick() {
 
 void Game::render() {
 	lm->render(display);
-	sl->textures[sl->GRASS]->drawAsBlock(0, 0, sl->rects[sl->ALONE], display);
 }

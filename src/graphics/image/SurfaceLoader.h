@@ -12,6 +12,7 @@
 
 class SurfaceLoader {
 public:
+	const static int BLOCK_SIZE = 16;
 	SurfaceLoader();
 	virtual ~SurfaceLoader();
 	// This holds all the different block Image types:

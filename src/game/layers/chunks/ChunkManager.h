@@ -25,7 +25,7 @@ public:
 	/**
 	 * Calls tick() from all chunks.
 	 */
-	void tick();
+	void tick(Sint32 wx, Sint32 wy);
 	/**
 	 * Calls render() from all Chunks.
 	 */
