@@ -8,6 +8,9 @@
 #ifndef CHUNKMANAGER_H_
 #define CHUNKMANAGER_H_
 
+#include "graphics/image/SurfaceLoader.h"
+#include "input/Input.h"
+
 class Chunk;
 
 class ChunkManager {
@@ -17,7 +20,7 @@ public:
 	/** This is the maximal Number of Chunks on the Y-Axis */
 	const static unsigned int maxY = 1;
 
-	ChunkManager(SurfaceLoader *sl, Input *in, LayerManager *lm);
+	ChunkManager(SurfaceLoader *sl, Input *in);
 	virtual ~ChunkManager();
 	/**
 	 * Calls tick() from all chunks.
@@ -30,7 +33,6 @@ public:
 private:
 	SurfaceLoader *sl;
 	Input *in;
-	LayerManager *lm;
 	/** Matrix, which holds all the Chunks inside */
 	Chunk* chunks[maxX][maxY];
 	/**

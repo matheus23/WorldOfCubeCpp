@@ -8,6 +8,11 @@
 #ifndef LAYERMANAGER_H_
 #define LAYERMANAGER_H_
 
+#include "game/layers/chunks/ChunkManager.h"
+#include <SDL/SDL.h>
+
+class ChunkManager;
+
 class LayerManager {
 public:
 	/**

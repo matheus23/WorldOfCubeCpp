@@ -17,7 +17,7 @@ in(in),
 cm(NULL),
 wx(0),
 wy(0) {
-	cm = new ChunkManager(sl, in, this);
+	cm = new ChunkManager(sl, in);
 }
 
 LayerManager::~LayerManager() {
