@@ -17,11 +17,28 @@ class ChunkManager;
 
 class Chunk {
 public:
+	/** Maximal Blocks on x-axis */
 	const static int maxX = 128;
+	/** Maximal Blocks on y-axis */
 	const static int maxY = 128;
+	/**
+	 * Constructor.
+	 * @params *sl - needed for Image-displaying later for the Blocks.
+	 * @params *in - needed for... good question...
+	 * @params *cm - needed for communication to other Chunks.
+	 */
 	Chunk(SurfaceLoader *sl, Input *in, ChunkManager *cm);
+	/**
+	 * Destrucor.
+	 */
 	virtual ~Chunk();
+	/**
+	 * For Calculating all the drawing positions of the Blocks.
+	 */
 	void tick(Sint32 wx, Sint32 wy);
+	/**
+	 * Renders all Blocks to screen.
+	 */
 	void render(SDLDisplay *display);
 private:
 	SurfaceLoader *sl;

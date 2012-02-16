@@ -81,7 +81,6 @@ void Game::run() {
 			frames = 0;
 			time1 = time2;
 			std::cout << fps << " fps" << std::endl;
-//			std::cout << "(" << lm->getWorldX() << "/" << lm->getWorldY() << ")" << std::endl;
 		}
 		/** Calculate Delay, and delay */
 		secndTime = SDL_GetTicks();

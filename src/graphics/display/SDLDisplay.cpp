@@ -27,7 +27,10 @@ bool SDLDisplay::tryInit(int width, int height, const char* caption) {
 		if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
 			return false;
 		}
-		SDL_GL_SetAttribute(SDL_GL_SWAP_CONTROL, 1);
+		/** I dont know, how this line got here,
+		 * it has nothing to do with solid SDL-rendering:
+		 * SDL_GL_SetAttribute(SDL_GL_SWAP_CONTROL, 1);
+		 */
 		screen = setVideoMode(width, height);
 		if (!screen) {
 			return false;
@@ -46,7 +49,7 @@ bool SDLDisplay::tryInit(int width, int height, const char* caption) {
 }
 
 SDL_Surface* SDLDisplay::setVideoMode(int width, int height) {
-	return SDL_SetVideoMode(width, height, 32, SDL_SWSURFACE | SDL_DOUBLEBUF);
+	return SDL_SetVideoMode(width, height, 32, SDL_HWSURFACE | SDL_DOUBLEBUF);
 }
 
 bool SDLDisplay::getCloseRequested() {

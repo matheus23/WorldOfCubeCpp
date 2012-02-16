@@ -19,8 +19,16 @@ Block::Block(Sint32 x, Sint32 y, SurfaceLoader *sl, Chunk *c) :
 Block::~Block() {
 }
 
+void Block::update() {
+
+}
+
 void Block::tick(Sint32 wx, Sint32 wy) {
 }
 
 void Block::render(SDLDisplay *display) {
+}
+
+unsigned int Block::calcBorder() {
+	return sl->ALONE;
 }

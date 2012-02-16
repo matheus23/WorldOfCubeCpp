@@ -16,6 +16,10 @@ BlockGrass::BlockGrass(Sint32 x, Sint32 y, SurfaceLoader *sl, Chunk *c) :
 BlockGrass::~BlockGrass() {
 }
 
+void BlockGrass::update() {
+
+}
+
 void BlockGrass::tick(Sint32 wx, Sint32 wy) {
 	drawx = (x*sl->BLOCK_SIZE)-wx;
 	drawy = (y*sl->BLOCK_SIZE)-wy;

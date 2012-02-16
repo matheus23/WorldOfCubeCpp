@@ -14,6 +14,7 @@ class BlockGrass : public Block {
 public:
 	BlockGrass(Sint32 x, Sint32 y, SurfaceLoader *sl, Chunk *c);
 	virtual ~BlockGrass();
+	void update();
 	void tick(Sint32 wx, Sint32 wy);
 	void render(SDLDisplay *display);
 };
