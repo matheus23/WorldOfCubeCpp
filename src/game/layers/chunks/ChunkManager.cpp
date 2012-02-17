@@ -5,12 +5,14 @@
  *      Author: philipp
  */
 
+#include <stdlib.h>
 #include "game/layers/chunks/Chunk.h"
 #include "ChunkManager.h"
 
 ChunkManager::ChunkManager(SurfaceLoader *sl, Input *in) :
 		sl(sl), in(in) {
 	createChunks();
+	srand(getSeedNum("matheusDEV"));
 }
 
 ChunkManager::~ChunkManager() {
@@ -22,6 +24,18 @@ ChunkManager::~ChunkManager() {
 			}
 		}
 	}
+}
+
+int ChunkManager::random() {
+	return rand();
+}
+
+unsigned int ChunkManager::getSeedNum(std::string seed) {
+	unsigned int num = 0x1997;
+	for (unsigned int i = 0; i < seed.length(); i++) {
+		num *= seed.at(i);
+	}
+	return num;
 }
 
 void ChunkManager::createChunks() {

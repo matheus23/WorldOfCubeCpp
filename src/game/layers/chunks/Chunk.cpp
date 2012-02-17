@@ -14,11 +14,7 @@
 
 Chunk::Chunk(int x, int y, SurfaceLoader *sl, Input *in, ChunkManager *cm) :
 		sl(sl), in(in), cm(cm), x(x), y(y) {
-	for (int x = 0; x < maxX; x++) {
-		for (int y = 0; y < maxY; y++) {
-			blocks[x][y] = new BlockGrass(x, y, sl, this);
-		}
-	}
+	create();
 	updateAll();
 }
 
@@ -28,6 +24,21 @@ Chunk::~Chunk() {
 			if (blocks[x][y] != NULL) {
 				delete blocks[x][y];
 				blocks[x][y] = NULL;
+			}
+		}
+	}
+}
+
+void Chunk::create() {
+	for (int x = 0; x < maxX; x++) {
+		for (int y = 0; y < maxY; y++) {
+			blocks[x][y] = NULL;
+		}
+	}
+	for (int x = 0; x < maxX; x++) {
+		for (int y = 0; y < maxY; y++) {
+			if (cm->random() % 2 == 1 || x == 0 || y == 0 || x == maxX || y == maxY) {
+				blocks[x][y] = new BlockGrass(x, y, sl, this);
 			}
 		}
 	}
@@ -106,10 +117,8 @@ void Chunk::deleteBlock(Sint32 x, Sint32 y) {
 	if (b != NULL) {
 		delete b;
 		b = NULL;
-		fprintf(stdout, "Deleted (%d|%d)\n", x, y);
 		return;
 	}
-	fprintf(stderr, "Failed to delete (%d|%d)\n", x, y);
 }
 
 void Chunk::createBlock(Sint32 x, Sint32 y, Block *b) {

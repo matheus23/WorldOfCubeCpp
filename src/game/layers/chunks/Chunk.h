@@ -73,6 +73,7 @@ private:
 	int x;
 	/** y position in ChunkManager's Matrix */
 	int y;
+	void create();
 };
 
 #endif /* CHUNK_H_ */

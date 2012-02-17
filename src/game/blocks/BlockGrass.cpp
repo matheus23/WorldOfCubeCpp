@@ -23,7 +23,6 @@ void BlockGrass::update() {
 			&& c->getRelativeBlock(x+1, y) != NULL
 			&& c->getRelativeBlock(x, y-1) != NULL
 			&& c->getRelativeBlock(x, y+1) != NULL) {
-		fprintf(stdout, "BlockGrass trying to delete (%d|%d), ", x, y);
 		c->deleteBlock(x, y);
 		BlockEarth *b = new BlockEarth(x, y, sl, c);
 		c->createBlock(x, y, b);

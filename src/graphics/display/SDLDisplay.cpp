@@ -60,7 +60,7 @@ bool SDLDisplay::getCloseRequested() {
 
 void SDLDisplay::flipBuffers() {
 	SDL_Flip(screen);
-	SDL_FillRect(screen, NULL, 0);
+	SDL_FillRect(screen, NULL, 0x1F3FFFFF);
 }
 
 SDL_Surface* SDLDisplay::getScreenSurface() {
