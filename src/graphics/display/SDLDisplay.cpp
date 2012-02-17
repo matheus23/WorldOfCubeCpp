@@ -12,7 +12,7 @@
 bool sdlInited = false;
 
 SDLDisplay::SDLDisplay(int width, int height, const char* caption) :
-	screen(NULL) {
+		screen(NULL) {
 	if (tryInit(width, height, caption) == false) {
 		std::cerr << "Failed to Init SDLDisplay!" << std::endl;
 	}
@@ -66,5 +66,4 @@ void SDLDisplay::flipBuffers() {
 SDL_Surface* SDLDisplay::getScreenSurface() {
 	return screen;
 }
-
 

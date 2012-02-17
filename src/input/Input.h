@@ -16,7 +16,7 @@ public:
 	/**
 	 * All available Input-keys.
 	 */
-	enum Key {
+	enum Flag {
 		ESC,
 		W,
 		A,
@@ -31,12 +31,26 @@ public:
 	};
 	Input();
 	virtual ~Input();
+	/**
+	 * Update the key-array
+	 */
 	void update();
-	bool getKeyDown(Key keyid);
+	/**
+	 * Get if a button has been pressed.
+	 */
+	bool getFlagDown(Flag keyid);
 private:
 	SDL_Event *event;
-	bool keys[MAX_VAL];
-	void setKey(SDL_KeyboardEvent *key, bool set);
+	bool flags[MAX_VAL];
+	/**
+	 * Sets a key to a specific value.
+	 * set is either true (pressed down)
+	 * or false (released)
+	 */
+	void setFlag(SDL_KeyboardEvent *key, bool set);
+	/**
+	 * sets QUIT in flags to true
+	 */
 	void setQuit();
 };
 

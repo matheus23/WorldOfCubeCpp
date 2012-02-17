@@ -18,11 +18,12 @@ SurfaceLoader::SurfaceLoader() {
 
 SurfaceLoader::~SurfaceLoader() {
 	for (int i = 0; i < MAX_VAL_BLOCK_TEXTURE; i++) {
-		textures[i]->~Texture();
+		if (textures[i] != NULL) {
+			delete textures[i];
+			textures[i] = NULL;
+		}
 	}
-	for (int i = 0; i < MAX_VAL_BLOCK_TYPE; i++) {
-		delete rects[i];
-	}
+	delete[] rects;
 }
 
 void SurfaceLoader::loadSurfaces() {
@@ -32,22 +33,22 @@ void SurfaceLoader::loadSurfaces() {
 }
 
 void SurfaceLoader::loadBlocks() {
-	rects[ALONE] 		= createRect(00, 00, 16, 16);
-	rects[TOP_LEFT] 	= createRect(16, 00, 16, 16);
-	rects[TOP] 			= createRect(32, 00, 16, 16);
-	rects[TOP_RIGHT]	= createRect(48, 00, 16, 16);
-	rects[END_TOP] 		= createRect(00, 16, 16, 16);
-	rects[LEFT] 		= createRect(16, 16, 16, 16);
-	rects[FILLED] 		= createRect(32, 16, 16, 16);
-	rects[RIGHT] 		= createRect(48, 16, 16, 16);
-	rects[END_BOTTOM] 	= createRect(00, 32, 16, 16);
-	rects[BOTTOM_LEFT]	= createRect(16, 32, 16, 16);
-	rects[BOTTOM] 		= createRect(32, 32, 16, 16);
-	rects[BOTTOM_RIGHT]	= createRect(48, 32, 16, 16);
-	rects[END_LEFT]		= createRect(00, 48, 16, 16);
-	rects[END_RIGHT]	= createRect(16, 48, 16, 16);
-	rects[PIPE_V]		= createRect(32, 48, 16, 16);
-	rects[PIPE_H] 		= createRect(48, 48, 16, 16);
+	rects[ALONE] = createRect(00, 00, 16, 16);
+	rects[TOP_LEFT] = createRect(16, 00, 16, 16);
+	rects[TOP] = createRect(32, 00, 16, 16);
+	rects[TOP_RIGHT] = createRect(48, 00, 16, 16);
+	rects[END_TOP] = createRect(00, 16, 16, 16);
+	rects[LEFT] = createRect(16, 16, 16, 16);
+	rects[FILLED] = createRect(32, 16, 16, 16);
+	rects[RIGHT] = createRect(48, 16, 16, 16);
+	rects[END_BOTTOM] = createRect(00, 32, 16, 16);
+	rects[BOTTOM_LEFT] = createRect(16, 32, 16, 16);
+	rects[BOTTOM] = createRect(32, 32, 16, 16);
+	rects[BOTTOM_RIGHT] = createRect(48, 32, 16, 16);
+	rects[END_LEFT] = createRect(00, 48, 16, 16);
+	rects[END_RIGHT] = createRect(16, 48, 16, 16);
+	rects[PIPE_V] = createRect(32, 48, 16, 16);
+	rects[PIPE_H] = createRect(48, 48, 16, 16);
 }
 
 SDL_Surface* SurfaceLoader::loadSurface(const char* file) {

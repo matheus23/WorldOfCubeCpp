@@ -9,32 +9,32 @@
 #include "ChunkManager.h"
 
 ChunkManager::ChunkManager(SurfaceLoader *sl, Input *in) :
-sl(sl),
-in(in) {
+		sl(sl), in(in) {
 	createChunks();
 }
 
 ChunkManager::~ChunkManager() {
-	for (unsigned int x = 0; x < maxX; x++) {
-		for (unsigned int y = 0; y < maxY; y++) {
+	for (int x = 0; x < maxX; x++) {
+		for (int y = 0; y < maxY; y++) {
 			if (chunks[x][y] != NULL) {
-				chunks[x][y]->~Chunk();
+				delete chunks[x][y];
+				chunks[x][y] = NULL;
 			}
 		}
 	}
 }
 
 void ChunkManager::createChunks() {
-	for (unsigned int x = 0; x < maxX; x++) {
-		for (unsigned int y = 0; y < maxY; y++) {
-			chunks[x][y] = new Chunk(sl, in, this);
+	for (int x = 0; x < maxX; x++) {
+		for (int y = 0; y < maxY; y++) {
+			chunks[x][y] = new Chunk(x, y, sl, in, this);
 		}
 	}
 }
 
 void ChunkManager::tick(Sint32 wx, Sint32 wy) {
-	for (unsigned int x = 0; x < maxX; x++) {
-		for (unsigned int y = 0; y < maxY; y++) {
+	for (int x = 0; x < maxX; x++) {
+		for (int y = 0; y < maxY; y++) {
 			if (chunks[x][y] != NULL) {
 				chunks[x][y]->tick(wx, wy);
 			}
@@ -43,8 +43,8 @@ void ChunkManager::tick(Sint32 wx, Sint32 wy) {
 }
 
 void ChunkManager::render(SDLDisplay *display) {
-	for (unsigned int x = 0; x < maxX; x++) {
-		for (unsigned int y = 0; y < maxY; y++) {
+	for (int x = 0; x < maxX; x++) {
+		for (int y = 0; y < maxY; y++) {
 			if (chunks[x][y] != NULL) {
 				chunks[x][y]->render(display);
 			}

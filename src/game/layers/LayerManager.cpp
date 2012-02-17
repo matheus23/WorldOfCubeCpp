@@ -12,23 +12,22 @@
 #include "LayerManager.h"
 
 LayerManager::LayerManager(SurfaceLoader *sl, Input *in) :
-sl(sl),
-in(in),
-cm(NULL),
-wx(0),
-wy(0) {
+		sl(sl), in(in), cm(NULL), wx(0), wy(0) {
 	cm = new ChunkManager(sl, in);
 }
 
 LayerManager::~LayerManager() {
-	cm->~ChunkManager();
+	if (cm != NULL) {
+		delete cm;
+		cm = NULL;
+	}
 }
 
 void LayerManager::tick() {
-	if (in->getKeyDown(Input::D) || in->getKeyDown(Input::RIGHT)) 	wx += scrollSpeed;
-	if (in->getKeyDown(Input::A) || in->getKeyDown(Input::LEFT)) 	wx -= scrollSpeed;
-	if (in->getKeyDown(Input::S) || in->getKeyDown(Input::DOWN)) 	wy += scrollSpeed;
-	if (in->getKeyDown(Input::W) || in->getKeyDown(Input::UP)) 		wy -= scrollSpeed;
+	if (in->getFlagDown(Input::D) || in->getFlagDown(Input::RIGHT)) wx += scrollSpeed;
+	if (in->getFlagDown(Input::A) || in->getFlagDown(Input::LEFT)) wx -= scrollSpeed;
+	if (in->getFlagDown(Input::S) || in->getFlagDown(Input::DOWN)) wy += scrollSpeed;
+	if (in->getFlagDown(Input::W) || in->getFlagDown(Input::UP)) wy -= scrollSpeed;
 	cm->tick(wx, wy);
 }
 

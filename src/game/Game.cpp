@@ -15,12 +15,7 @@
 #include "game/Game.h"
 
 Game::Game() :
-	running(false),
-	display(NULL),
-	in(NULL),
-	sl(NULL),
-	lm(NULL) {
-
+		running(false), display(NULL), in(NULL), sl(NULL), lm(NULL) {
 	display = new SDLDisplay(800, 600, "WorldOfCube");
 	in = new Input;
 	sl = new SurfaceLoader;
@@ -28,10 +23,22 @@ Game::Game() :
 }
 
 Game::~Game() {
-	lm->~LayerManager();
-	sl->~SurfaceLoader();
-	in->~Input();
-	display->~SDLDisplay();
+	if (sl != NULL) {
+		delete sl;
+		sl = NULL;
+	}
+	if (in != NULL) {
+		delete in;
+		in = NULL;
+	}
+	if (lm != NULL) {
+		delete lm;
+		lm = NULL;
+	}
+	if (display != NULL) {
+		delete display;
+		display = NULL;
+	}
 }
 
 bool Game::getRunning() {
@@ -58,10 +65,10 @@ void Game::run() {
 	Sint32 takenTime = 0;
 	Sint32 firstTime = 0;
 	Sint32 secndTime = 0;
-	Sint32 desiredTime = 1000/60;
+	Sint32 desiredTime = 1000 / 60;
 	Sint32 sleepTime = 0;
 
-	while(running) {
+	while (running) {
 		firstTime = SDL_GetTicks();
 
 		/** Simulation Calculations */
@@ -71,12 +78,13 @@ void Game::run() {
 		render();
 
 		display->flipBuffers();
-		running = !(in->getKeyDown(Input::QUIT) || in->getKeyDown(Input::ESC));
+		running = !(in->getFlagDown(Input::QUIT)
+				|| in->getFlagDown(Input::ESC));
 
 		/** Calculate and Print FPS */
 		frames++;
 		time2 = SDL_GetTicks();
-		if (time2-time1 >= 1000) {
+		if (time2 - time1 >= 1000) {
 			fps = frames;
 			frames = 0;
 			time1 = time2;
@@ -84,8 +92,8 @@ void Game::run() {
 		}
 		/** Calculate Delay, and delay */
 		secndTime = SDL_GetTicks();
-		takenTime = secndTime-firstTime;
-		sleepTime = desiredTime-takenTime;
+		takenTime = secndTime - firstTime;
+		sleepTime = desiredTime - takenTime;
 		if (sleepTime > 0) {
 			SDL_Delay(sleepTime);
 		}

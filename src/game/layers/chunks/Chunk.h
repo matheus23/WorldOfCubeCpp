@@ -27,7 +27,7 @@ public:
 	 * @params *in - needed for... good question...
 	 * @params *cm - needed for communication to other Chunks.
 	 */
-	Chunk(SurfaceLoader *sl, Input *in, ChunkManager *cm);
+	Chunk(int x, int y, SurfaceLoader *sl, Input *in, ChunkManager *cm);
 	/**
 	 * Destrucor.
 	 */
@@ -40,11 +40,39 @@ public:
 	 * Renders all Blocks to screen.
 	 */
 	void render(SDLDisplay *display);
+	/**
+	 * Blocks can get blocks near to them
+	 * in even other chunks.
+	 */
+	Block* getRelativeBlock(Sint32 x, Sint32 y);
+	/**
+	 * Set block-pointer to the value "set".
+	 */
+	bool setRelativeBlock(Sint32 x, Sint32 y, Block *set);
+	/**
+	 * Update all existing blocks in matrix.
+	 */
+	void updateAll();
+	/**
+	 * Delete a block.
+	 * You cannot get that block back.
+	 */
+	void deleteBlock(Sint32 x, Sint32 y);
+	/**
+	 * Set a block-pointer in the matrix of this,
+	 * or other surrounding chunks to "b".
+	 */
+	void createBlock(Sint32 x, Sint32 y, Block *b);
 private:
 	SurfaceLoader *sl;
 	Input *in;
 	ChunkManager *cm;
+	/** Stores all Blocks */
 	Block *blocks[maxX][maxY];
+	/** x position in ChunkManager's Matrix */
+	int x;
+	/** y position in ChunkManager's Matrix */
+	int y;
 };
 
 #endif /* CHUNK_H_ */
