@@ -15,7 +15,7 @@
 #include "game/Game.h"
 
 Game::Game() :
-		running(false), display(NULL), in(NULL), sl(NULL), lm(NULL) {
+		running(false), limitFPS(true), display(NULL), in(NULL), sl(NULL), lm(NULL) {
 	display = new SDLDisplay(800, 600, "WorldOfCube");
 	in = new Input;
 	sl = new SurfaceLoader;
@@ -94,7 +94,7 @@ void Game::run() {
 		secndTime = SDL_GetTicks();
 		takenTime = secndTime - firstTime;
 		sleepTime = desiredTime - takenTime;
-		if (sleepTime > 0) {
+		if (sleepTime > 0 && limitFPS) {
 			SDL_Delay(sleepTime);
 		}
 	}
@@ -103,6 +103,9 @@ void Game::run() {
 void Game::tick() {
 	/** Update Input */
 	in->update();
+	if (in->getFlagRelease(Input::F)) {
+		limitFPS = !limitFPS;
+	}
 
 	lm->tick();
 }

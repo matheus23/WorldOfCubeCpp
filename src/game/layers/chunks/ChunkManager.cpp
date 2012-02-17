@@ -44,6 +44,11 @@ void ChunkManager::createChunks() {
 			chunks[x][y] = new Chunk(x, y, sl, in, this);
 		}
 	}
+	for (int x = 0; x < maxX; x++) {
+		for (int y = 0; y < maxY; y++) {
+			chunks[x][y]->updateAll();
+		}
+	}
 }
 
 void ChunkManager::tick(Sint32 wx, Sint32 wy) {

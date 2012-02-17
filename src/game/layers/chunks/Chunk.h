@@ -63,16 +63,21 @@ public:
 	 * or other surrounding chunks to "b".
 	 */
 	void createBlock(Sint32 x, Sint32 y, Block *b);
+
+	/** x position in ChunkManager's Matrix */
+	int x;
+	/** y position in ChunkManager's Matrix */
+	int y;
 private:
 	SurfaceLoader *sl;
 	Input *in;
 	ChunkManager *cm;
 	/** Stores all Blocks */
 	Block *blocks[maxX][maxY];
-	/** x position in ChunkManager's Matrix */
-	int x;
-	/** y position in ChunkManager's Matrix */
-	int y;
+	int beginx;
+	int beginy;
+	int endx;
+	int endy;
 	void create();
 };
 

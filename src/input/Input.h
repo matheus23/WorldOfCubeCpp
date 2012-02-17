@@ -18,10 +18,32 @@ public:
 	 */
 	enum Flag {
 		ESC,
-		W,
 		A,
-		S,
+		B,
+		C,
 		D,
+		E,
+		F,
+		G,
+		H,
+		I,
+		J,
+		K,
+		L,
+		M,
+		N,
+		O,
+		P,
+		Q,
+		R,
+		S,
+		T,
+		U,
+		V,
+		W,
+		X,
+		Y,
+		Z,
 		UP,
 		LEFT,
 		DOWN,
@@ -39,9 +61,12 @@ public:
 	 * Get if a button has been pressed.
 	 */
 	bool getFlagDown(Flag keyid);
+	bool getFlagPress(Flag keyid);
+	bool getFlagRelease(Flag keyid);
 private:
 	SDL_Event *event;
 	bool flags[MAX_VAL];
+	bool flags_old[MAX_VAL];
 	/**
 	 * Sets a key to a specific value.
 	 * set is either true (pressed down)

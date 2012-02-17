@@ -22,7 +22,7 @@ public:
 	Block(Sint32 x, Sint32 y, SurfaceLoader *sl, Chunk *c);
 	virtual ~Block() = 0;
 	virtual void update() = 0;
-	virtual void tick(Sint32 wx, Sint32 wy) = 0;
+	virtual void tick(Sint32 wx, Sint32 wy);
 	virtual void render(SDLDisplay *display) = 0;
 protected:
 	SurfaceLoader *sl;
@@ -47,7 +47,7 @@ protected:
 	Sint32 drawy;
 	/**
 	 * Method to calculate the blockID
-	 * TODO: Implement it.
+	 * TODO: Implement Method to calculate blockID.
 	 */
 	unsigned int calcBorder();
 };

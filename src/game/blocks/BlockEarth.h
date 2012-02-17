@@ -15,7 +15,6 @@ public:
 	BlockEarth(Sint32 x, Sint32 y, SurfaceLoader *sl, Chunk *c);
 	virtual ~BlockEarth();
 	void update();
-	void tick(Sint32 wx, Sint32 wy);
 	void render(SDLDisplay *display);
 };
 

@@ -42,6 +42,7 @@ private:
 	 * the game stops.
 	 */
 	bool running;
+	bool limitFPS;
 	SDLDisplay *display;
 	Input *in;
 	SurfaceLoader *sl;
