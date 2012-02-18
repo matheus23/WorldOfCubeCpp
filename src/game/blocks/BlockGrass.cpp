@@ -19,6 +19,7 @@ BlockGrass::~BlockGrass() {
 }
 
 void BlockGrass::update() {
+	blockID = calcBorder();
 	if (c->getRelativeBlock(x-1, y) != NULL
 			&& c->getRelativeBlock(x+1, y) != NULL
 			&& c->getRelativeBlock(x, y-1) != NULL
@@ -26,6 +27,7 @@ void BlockGrass::update() {
 		c->deleteBlock(x, y);
 		BlockEarth *b = new BlockEarth(x, y, sl, c);
 		c->createBlock(x, y, b);
+		c->getRelativeBlock(x, y)->update();
 	}
 }
 
