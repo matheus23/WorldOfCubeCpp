@@ -26,6 +26,7 @@ SUBDIRS := \
 src/input \
 src/graphics/image \
 src/graphics/display \
+src/game/layers/player \
 src/game/layers/chunks \
 src/game/layers \
 src/game/blocks \

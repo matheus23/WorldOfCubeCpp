@@ -11,6 +11,8 @@
 
 BlockGrass::BlockGrass(Sint32 x, Sint32 y, SurfaceLoader *sl, Chunk *c) :
 	Block(x, y, sl, c) {
+	this->x = x;
+	this->y = y;
 	texID = sl->GRASS;
 	blockID = sl->ALONE;
 }

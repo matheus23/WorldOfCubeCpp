@@ -5,6 +5,7 @@
  *      Author: philipp
  */
 
+#include <SDL/SDL.h>
 #include "graphics/image/SurfaceLoader.h"
 #include "input/Input.h"
 #include "game/layers/chunks/ChunkManager.h"
@@ -91,9 +92,8 @@ void Chunk::tick(Sint32 wx, Sint32 wy) {
 	if (beginy < 0) beginy = 0;
 	if (beginy > maxY-1) beginy = maxY-1;
 
-	// TODO: Remove Window size Constants.
-	endx = beginx+(800/sl->BLOCK_SIZE);
-	endy = beginy+(600/sl->BLOCK_SIZE);
+	endx = beginx+(SDL_GetVideoSurface()->w/sl->BLOCK_SIZE);
+	endy = beginy+(SDL_GetVideoSurface()->h/sl->BLOCK_SIZE);
 	if (endx < 0) endx = 0;
 	if (endx > maxX-1) endx = maxX-1;
 	if (endy < 0) endy = 0;
@@ -120,6 +120,15 @@ void Chunk::render(SDLDisplay *display) {
 	}
 }
 
+bool Chunk::tryUpdateBlock(Sint32 x, Sint32 y) {
+	Block *b = getRelativeBlock(x, y);
+	if (b != NULL) {
+		b->update();
+		return true;
+	}
+	return false;
+}
+
 void Chunk::updateAll() {
 	for (int x = 0; x < maxX; x++) {
 		for (int y = 0; y < maxY; y++) {
@@ -134,7 +143,7 @@ void Chunk::deleteBlock(Sint32 x, Sint32 y) {
 	Block *b = getRelativeBlock(x, y);
 	if (b != NULL) {
 		delete b;
-		b = NULL;
+		setRelativeBlock(x, y, NULL);
 		return;
 	}
 }
@@ -144,4 +153,8 @@ void Chunk::createBlock(Sint32 x, Sint32 y, Block *b) {
 		delete b;
 		b = NULL;
 	}
+}
+
+bool Chunk::isBlockExsisting(Sint32 x, Sint32 y) {
+	return blocks[x][y] != NULL;
 }

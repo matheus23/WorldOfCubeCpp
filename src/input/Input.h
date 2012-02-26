@@ -48,6 +48,9 @@ public:
 		LEFT,
 		DOWN,
 		RIGHT,
+		MB_LEFT,
+		MB_MID,
+		MB_RIGHT,
 		QUIT,
 		MAX_VAL
 	};
@@ -63,6 +66,8 @@ public:
 	bool getFlagDown(Flag keyid);
 	bool getFlagPress(Flag keyid);
 	bool getFlagRelease(Flag keyid);
+	int mousex;
+	int mousey;
 private:
 	SDL_Event *event;
 	bool flags[MAX_VAL];
@@ -72,11 +77,20 @@ private:
 	 * set is either true (pressed down)
 	 * or false (released)
 	 */
-	void setFlag(SDL_KeyboardEvent *key, bool set);
+	void setFlag(SDL_KeyboardEvent key, bool set);
+	/**
+	 * Sets a "MB"-Flag, which is the
+	 * Flag name for mouse buttons.
+	 */
+	void setMouse(SDL_MouseButtonEvent button, bool set);
 	/**
 	 * sets QUIT in flags to true
 	 */
 	void setQuit();
+	/**
+	 * handles all events
+	 */
+	void handleInput();
 };
 
 #endif /* INPUT_H_ */

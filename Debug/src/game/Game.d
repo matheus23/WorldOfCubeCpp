@@ -5,6 +5,7 @@ src/game/Game.d: ../src/game/Game.cpp \
  /home/philipp/program/workspace/WorldOfCube/src/graphics/image/Texture.h \
  /home/philipp/program/workspace/WorldOfCube/src/game/layers/LayerManager.h \
  /home/philipp/program/workspace/WorldOfCube/src/game/layers/chunks/ChunkManager.h \
+ /home/philipp/program/workspace/WorldOfCube/src/game/layers/player/Cursor.h \
  /home/philipp/program/workspace/WorldOfCube/src/game/Game.h
 
 /home/philipp/program/workspace/WorldOfCube/src/input/Input.h:
@@ -18,5 +19,7 @@ src/game/Game.d: ../src/game/Game.cpp \
 /home/philipp/program/workspace/WorldOfCube/src/game/layers/LayerManager.h:
 
 /home/philipp/program/workspace/WorldOfCube/src/game/layers/chunks/ChunkManager.h:
+
+/home/philipp/program/workspace/WorldOfCube/src/game/layers/player/Cursor.h:
 
 /home/philipp/program/workspace/WorldOfCube/src/game/Game.h:

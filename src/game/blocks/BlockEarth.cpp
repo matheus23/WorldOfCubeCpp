@@ -11,6 +11,8 @@
 
 BlockEarth::BlockEarth(Sint32 x, Sint32 y, SurfaceLoader *sl, Chunk *c) :
 		Block(x, y, sl, c) {
+	this->x = x;
+	this->y = y;
 	texID = sl->EARTH;
 	blockID = sl->ALONE;
 }
@@ -21,7 +23,7 @@ BlockEarth::~BlockEarth() {
 
 void BlockEarth::update() {
 	blockID = calcBorder();
-	if (c->getRelativeBlock(x - 1, y) == NULL
+	if (	   c->getRelativeBlock(x - 1, y) == NULL
 			|| c->getRelativeBlock(x + 1, y) == NULL
 			|| c->getRelativeBlock(x, y - 1) == NULL
 			|| c->getRelativeBlock(x, y + 1) == NULL) {

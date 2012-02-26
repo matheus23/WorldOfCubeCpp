@@ -12,6 +12,7 @@ RM := rm -rf
 -include src/input/subdir.mk
 -include src/graphics/image/subdir.mk
 -include src/graphics/display/subdir.mk
+-include src/game/layers/player/subdir.mk
 -include src/game/layers/chunks/subdir.mk
 -include src/game/layers/subdir.mk
 -include src/game/blocks/subdir.mk

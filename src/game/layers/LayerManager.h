@@ -8,8 +8,9 @@
 #ifndef LAYERMANAGER_H_
 #define LAYERMANAGER_H_
 
-#include "game/layers/chunks/ChunkManager.h"
 #include <SDL/SDL.h>
+#include "game/layers/chunks/ChunkManager.h"
+#include "game/layers/player/Cursor.h"
 
 class ChunkManager;
 
@@ -41,6 +42,7 @@ private:
 	SurfaceLoader *sl;
 	Input *in;
 	ChunkManager *cm;
+	Cursor *cours;
 
 	/** World-X-Coordinate: */
 	Sint32 wx;

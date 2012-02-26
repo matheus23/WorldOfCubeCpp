@@ -63,6 +63,16 @@ public:
 	 * or other surrounding chunks to "b".
 	 */
 	void createBlock(Sint32 x, Sint32 y, Block *b);
+	/**
+	 * Try updating a block. This will not fail,
+	 * if the block does not exist, but it will
+	 * return false.
+	 */
+	bool tryUpdateBlock(Sint32 x, Sint32 y);
+	/**
+	 * @return - whether there is a block or not.
+	 */
+	bool isBlockExsisting(Sint32 x, Sint32 y);
 
 	/** x position in ChunkManager's Matrix */
 	int x;

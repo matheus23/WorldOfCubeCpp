@@ -47,7 +47,6 @@ protected:
 	Sint32 drawy;
 	/**
 	 * Method to calculate the blockID
-	 * TODO: Implement Method to calculate blockID.
 	 */
 	unsigned int calcBorder();
 };
